@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atul ❤️ Pihu - Atusha Day</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#ffc0cb,#ffe4ec);
+    height:100vh;
+    overflow:hidden;
+}
+
+/* INTRO ANIMATION SCREEN */
+.intro{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg,#ff9ab3,#ffd6e7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    z-index:10;
+    animation:fadeOut 2s ease forwards;
+    animation-delay:4s;
+}
+
+.intro h1{
+    font-family:'Great Vibes',cursive;
+    font-size:3rem;
+    color:white;
+    animation:pop 1s ease infinite alternate;
+}
+
+.intro p{
+    color:white;
+    margin-top:10px;
+    font-size:1.1rem;
+}
+
+@keyframes pop{
+    from{transform:scale(1);} 
+    to{transform:scale(1.1);} 
+}
+
+@keyframes fadeOut{
+    to{opacity:0;visibility:hidden;}
+}
+
+/* LOVE STORY SLIDER */
+.story{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg,#ffc0cb,#ffe4ec);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    z-index:5;
+    opacity:0;
+    animation:showStory 2s forwards;
+    animation-delay:4s;
+}
+
+@keyframes showStory{
+    to{opacity:1;}
+}
+
+.slide{
+    display:none;
+    text-align:center;
+    padding:20px;
+}
+
+.slide.active{display:block;}
+
+.slide h2{
+    font-family:'Great Vibes',cursive;
+    font-size:2.4rem;
+    color:#ff2e63;
+}
+
+.slide p{
+    margin-top:10px;
+    color:white;
+    font-size:1rem;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 18px;
+    border:none;
+    border-radius:20px;
+    background:#ff2e63;
+    color:white;
+    font-size:1rem;
+}
+
+/* MAIN GAME */
+.container{
+    position:fixed;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    opacity:0;
+    animation:showGame 2s forwards;
+    animation-delay:10s;
+}
+
+@keyframes showGame{
+    to{opacity:1;}
+}
+
+.big-heart{
+    font-size:90px;
+    margin-top:30px;
+    cursor:pointer;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);} 
+    50%{transform:scale(1.15);} 
+    100%{transform:scale(1);} 
+}
+
+.message-box{
+    position:fixed;
+    bottom:-100%;
+    left:0;
+    width:100%;
+    background:rgba(255,255,255,0.3);
+    backdrop-filter:blur(15px);
+    padding:30px;
+    border-radius:25px 25px 0 0;
+    transition:0.6s;
+}
+
+.message-box.show{bottom:0;}
+
+.photo-box img{
+    width:100%;
+    max-width:280px;
+    border-radius:15px;
+    margin-top:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO CARTOON STYLE ANIMATION -->
+<div class="intro">
+    <h1>Atul ❤️ Pihu</h1>
+    <p>2 Years of Love 💕</p>
+</div>
+
+<!-- LOVE STORY SLIDES -->
+<div class="story" id="story">
+
+<div class="slide active">
+    <h2>How It Started 💖</h2>
+    <p>The day we started talking... I never knew you would become so special.</p>
+    <button onclick="nextSlide()">Next</button>
+</div>
+
+<div class="slide">
+    <h2>Our First Memories ✨</h2>
+    <p>Every chat, every laugh, every moment slowly became my favourite part of life.</p>
+    <button onclick="nextSlide()">Next</button>
+</div>
+
+<div class="slide">
+    <h2>2 Years Completed 💕</h2>
+    <p>And today we completed 2 beautiful years together. Thank you for everything Atul ❤️</p>
+    <button onclick="startGame()">Tap For Surprise</button>
+</div>
+
+</div>
+
+<!-- HEART GAME -->
+<div class="container" id="game">
+    <h1 style="font-family:'Great Vibes',cursive;color:#ff2e63;">Tap 3 Times 💖</h1>
+    <div class="big-heart" id="heart">❤️</div>
+</div>
+
+<div class="message-box" id="messageBox">
+    <h2 style="font-family:'Great Vibes',cursive;color:#ff2e63;">Happy Atusha Day 💕</h2>
+    <p style="color:white;margin-top:10px;">
+        2 years completed with you feels like the most beautiful journey of my life ❤️
+    </p>
+
+    <div class="photo-box">
+        <img src="657759187_1518918366518094_986319519998857983_n.jpg">
+    </div>
+</div>
+
+<script>
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+function nextSlide(){
+    slides[index].classList.remove("active");
+    index++;
+    slides[index].classList.add("active");
+}
+
+function startGame(){
+    document.getElementById("story").style.display="none";
+    document.getElementById("game").style.opacity="1";
+}
+
+let clicks = 0;
+let heart = document.getElementById("heart");
+let messageBox = document.getElementById("messageBox");
+
+heart.addEventListener("click",function(){
+    clicks++;
+    if(clicks===3){
+        messageBox.classList.add("show");
+    }
+});
+</script>
+
+</body>
+</html>
